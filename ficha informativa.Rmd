@@ -1,0 +1,90 @@
+---
+title: "Git, Github y R"
+author: "Oscar Gustavo Ochoa Castañeda"
+date: "`r Sys.Date()`"
+output: prettydoc::html_pretty
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## ¿Qué es git?
+
+Git es un sistema de control de versiones que ayuda a rastrear y controlar los cambios en los archivos de código. Es como una máquina del tiempo para los códigos donde puedes ir hacia atrás para comparar los cambios, colaborar con otras personas, pero teniendo un control.
+
+### Puntos clave de Git
+
+-   Guarda versiones de código
+-   **Ramas**: trabajará con en nuevas características sin afectar el código principal.
+-   **historial de cambios:** mantiene registros de todo, si eliminas o agregas, etc.
+
+## ¿Qué es github?
+
+Es una plataforma en línea que usa Git para almacenar y compartir proyectos de código.
+
+### Puntos clave de Github
+
+-   Se puede guardar en la nube
+-   Colaboración de proyectos de una manera organizada
+-   Por ser estudiantes se puede acceder al plan pro gratuito
+-   Documentación y organización
+
+## Tarea del leonel
+
+Probablemente Leonel se refería a que nuestros códigos de la tarea los podemos almacenar aqui para poder tener un historial de versiones y colaborar entre nosotros. Mientras que nos empezamos a dar una empapada de lo que es el mundo de la programación pero con el enfoque que se usa en la realidad.
+
+### R
+
+En R existe un tipo de documento que se llama R markdown donde podemos realizar trabajos académicos de una manera súper sencilla y fácil.
+
+Básicamente podemos con esto combinar texto con bloques de código donde podemos mostrar automáticamente nuestros resultados.
+
+Les juro que el potencial de esto es increible, literalmente el limite es su imaginación. Podemos usarlo con Barragan, en macroeconometría con mosiño. ![](images/plot_zoom_png.png)
+
+## Links
+
+-   La página oficial de R studio tiene info muy interesante sobre [R Markdown](https://rmarkdown.rstudio.com/)
+-   [Guía definitiva de R markdown](https://bookdown.org/yihui/rmarkdown/)
+-   [Introduction to R Markdown](https://www.youtube.com/watch?v=vWGGlMHkhyY&t=1501s) en youtube
+-   [Git Tutorial For Dummies](https://www.youtube.com/watch?v=mJ-qvsxPHpY)
+-   [Si quieres aprender las bases de R](https://youtube.com/playlist?list=PLhQjrBD2T382yfNp_-xzX244d-O9W6YmD&si=V7PGO0QNdS7hVElx) este curso es gratuito y lo imparte Harvard
+-   Para saber más acerca de [R markdown](https://rstudio.github.io/cheatsheets/html/rmarkdown.html?_gl=1*1fcw52s*_ga*ODk2NzQxNzk5LjE3MTM5MjA5OTk.*_ga_2C0WZ1JHG0*MTcyMDQwNjg2NC40LjEuMTcyMDQwNzAzNy4wLjAuMA) puedes usar ese link
+-   Un pequeño curso de introducción a [Git y github](https://www.youtube.com/watch?v=RGOj5yH7evk&t=763s)
+
+### Problema 1 de tarea como ejemplo:
+
+El problema nos da las reglas de que en la misma fila $i$, cada elemento es $1$ unidad mayor que el anterior. Mientras que en la misma columna $j$, cada elemento sea $1$ unidad menor que el que está por arriba.
+
+Primero creamos una matriz $A$ cuadrada donde su dimensión es igual a $n = 10$. La construyo con NA para luego agregarle los valores con las reglas.
+
+```{r}
+n <- 10
+A <- matrix(NA, n, n)
+```
+
+Tenemos que el valor $A_{1,1}$ es igual $1$ y se lo introducimos a la matriz:
+
+```{r}
+A[1,1] <- 1
+```
+
+Para llenar la matriz se construye un ciclo for:
+
+```{r}
+for (i in 1:n){
+  for (j in 1:n){
+    if (j>1){ 
+      A[i,j] <- A[i,j-1]+1}
+    if (i>1){ 
+      A[i,j] <- A[i-1,j]-1}
+      
+  }
+}
+```
+
+```{r echo = FALSE}
+# Mostrar la matriz de una manera más bonita
+knitr::kable(A, caption = "Matriz resultante según las condiciones dadas")
+
+```
